@@ -41,7 +41,7 @@ def draw_game_board(game_board: list[list[int]], is_start: bool = False) -> None
         start_y = random.randint(0, len(game_board) - 1)
         start_x = random.randint(0, len(game_board[0]) - 1)
         game_board[start_y][start_x] = 2
-    for y, row in enumerate(game_board):
-        for x, cell in enumerate(row):
+    for y, row in game_board:
+        for x, cell in row:
             print(cell, end="\t")
         print()
