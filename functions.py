@@ -30,11 +30,14 @@ def get_number(input_text: str, max_number: int, min_number: int) -> int:
             print("please enter number")
 
 
-def draw_game_board(game_board: list[list[int]], is_start: bool = False) -> None:
+def draw_game_board(game_board: list[list[int]]) -> bool:
     """draw_game_board print game board for user
 
     Arguments:
         game_board {list[list[int]]} -- game board detail
+
+    Returns:
+        bool -- user can continue playing or not
     """
     print("\n" * 40)
     print("HELP :")
@@ -42,14 +45,22 @@ def draw_game_board(game_board: list[list[int]], is_start: bool = False) -> None
     print("left => a")
     print("down => s")
     print("right => d")
-    if is_start:
-        start_y = random.randint(0, len(game_board) - 1)
-        start_x = random.randint(0, len(game_board[0]) - 1)
-        game_board[start_y][start_x] = 2
+    y_count = len(game_board)
+    x_count = len(game_board[0])
+    locations = [(y, x) for y in range(y_count) for x in range(x_count)]
+    while True:
+        if not locations:
+            return False
+        y, x = random.choice(locations)
+        if game_board[y][x] == 0:
+            game_board[y][x] = 2
+            break
+        locations.remove((y, x))
     for y, row in enumerate(game_board):
         for x, cell in enumerate(row):
             print(cell, end="\t")
         print()
+    return True
 
 
 def move_numbers(game_board: list[list[int]], direction: str) -> list[list[int]]:
