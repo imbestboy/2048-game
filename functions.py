@@ -1,3 +1,6 @@
+import random
+
+
 def get_number(input_text: str, max_number: int, min_number: int) -> int:
     """get_number get number from user by input function
 
@@ -23,3 +26,19 @@ def get_number(input_text: str, max_number: int, min_number: int) -> int:
             print(f"enter number higher than {min_number-1}")
         else:
             print("please enter number")
+
+
+def draw_game_board(game_board: list[list[int]], is_start: bool = False) -> None:
+    """draw_game_board print game board for user
+
+    Arguments:
+        game_board {list[list[int]]} -- game board detail
+    """
+    if is_start:
+        start_y = random.randint(0, len(game_board) - 1)
+        start_x = random.randint(0, len(game_board[0]) - 1)
+        game_board[start_y][start_x] = 2
+    for y, row in enumerate(game_board):
+        for x, cell in enumerate(row):
+            print(cell, end="\t")
+        print()
