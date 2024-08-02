@@ -8,4 +8,21 @@ y = functions.get_number(
 )
 game_board = [[0 for _ in range(x)] for _ in range(y)]
 
-functions.draw_game_board(game_board=game_board, is_start=True)
+DIRECTIONS = {"w": "up", "s": "down", "a": "left", "d": "right"}
+
+while functions.draw_game_board(game_board=game_board):
+    movement = input("enter one of w a s d : ").lower()
+    if movement not in ("w", "a", "s", "d"):
+        print("\n" * 40)
+        functions.draw_game_board(game_board=game_board)
+        print("please enter one of w s a d !")
+        continue
+
+    game_board = functions.move_numbers(
+        game_board=game_board, direction=DIRECTIONS[movement]
+    )
+
+print("\n" * 40)
+
+print("GAME OVER")
+input("press enter to continue")
