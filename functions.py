@@ -20,6 +20,8 @@ def get_number(input_text: str, max_number: int, min_number: int) -> int:
             and int(number) >= min_number
         ):
             return int(number)
+        elif not number.isnumeric():
+            print("enter number please")
         elif int(number) > max_number:
             print(f"enter number lower than {max_number+1}")
         elif int(number) < min_number:
