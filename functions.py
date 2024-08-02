@@ -36,6 +36,7 @@ def draw_game_board(game_board: list[list[int]], is_start: bool = False) -> None
     Arguments:
         game_board {list[list[int]]} -- game board detail
     """
+    print("\n" * 40)
     if is_start:
         start_y = random.randint(0, len(game_board) - 1)
         start_x = random.randint(0, len(game_board[0]) - 1)
